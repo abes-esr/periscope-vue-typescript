@@ -1,13 +1,9 @@
-<template>
-
-</template>
+<template> </template>
 
 <script>
 export default {
-name: "Rcr.vue"
+  name: 'Rcr.vue'
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,13 +1,9 @@
-<template>
-
-</template>
+<template> </template>
 
 <script>
 export default {
-name: "Regions.vue"
+  name: 'Regions.vue'
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

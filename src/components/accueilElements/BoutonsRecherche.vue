@@ -1,13 +1,9 @@
-<template>
-
-</template>
+<template> </template>
 
 <script>
 export default {
-name: "BoutonsRecherche.vue"
+  name: 'BoutonsRecherche.vue'
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

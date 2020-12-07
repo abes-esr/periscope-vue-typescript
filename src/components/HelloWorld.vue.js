@@ -1,7 +1,7 @@
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: String
   }
-};
+}
 //# sourceMappingURL=HelloWorld.vue.js.map
