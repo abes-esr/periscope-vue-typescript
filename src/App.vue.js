@@ -1,8 +1,8 @@
 import HelloWorld from "./components/HelloWorld.vue";
 export default {
-    name: "App",
-    components: {
-        HelloWorld
-    }
+  name: "App",
+  components: {
+    HelloWorld
+  }
 };
 //# sourceMappingURL=App.vue.js.map
