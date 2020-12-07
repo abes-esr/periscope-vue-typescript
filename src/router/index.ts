@@ -1,18 +1,24 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
+import Accueil from "@/views/Accueil.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Accueil",
+    component: Accueil
+  },
+  {
+    path: "/accueil",
+    name: "Accueil",
+    component: Accueil
   },
   {
     path: "/about",
     name: "About",
+    // TODO ne pas supprimer. Servira plus tard au lazy-loading.
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
