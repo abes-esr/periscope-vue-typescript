@@ -32,11 +32,11 @@ class GlobalPropertiesMixin extends Vue {
 
    private autoResizeImage = 'max-width: 100%; max-height: 100%;';
 
-   public getAlignmentValue(numberId: number): string {
+   public getVerticalAlignValue(numberId: number): string {
       return this.alignments[numberId].value;
    }
 
-   public getJustifyValue(numberId: number): string {
+   public getHorizontalJustifyValue(numberId: number): string {
       return this.justify[numberId].value;
    }
 
