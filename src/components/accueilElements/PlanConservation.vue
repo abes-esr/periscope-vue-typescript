@@ -6,8 +6,8 @@
          </v-col>
       </v-row>
       <v-row :align="getVerticalAlignValue(1)" :justify="getHorizontalJustifyValue(2)" class="ma-0 pa-0" dense>
-         <v-col v-for="iteration in this.choixTousOuAucun" v-bind:key="iteration.id" xs="6" sm="2" align-self="end" class="ma-0 pa-0">
-            <v-checkbox :value="iteration.text" :label="iteration.text" class="outlined-app ma-0 pa-0" style="max-height: 1.8em" dense></v-checkbox>
+         <v-col v-for="iteration in this.choixTousOuAucun" v-bind:key="iteration.id" xs="6" sm="1" align-self="end" class="ma-0 pa-0">
+            <v-btn small depressed color="primary" v-on:click="changeAllValuesWhenClicked(iteration.text)" v-html="iteration.text"></v-btn>
          </v-col>
       </v-row>
       <v-row>
@@ -36,7 +36,7 @@ interface Provider {
    components: {
       ComponentRegions,
       ComponentMetiers,
-   }
+   },
 })
 export default class PlanConservation extends Mixins(GlobalPropertiesMixin) {
    private regions: Array<Provider> = [
@@ -86,6 +86,37 @@ export default class PlanConservation extends Mixins(GlobalPropertiesMixin) {
       {id: 0, key: '', value: false, text: 'Tous'},
       {id: 1, key: '', value: false, text: 'Aucun'},
    ];
+
    private title = 'Choisir un plan de conservation';
+
+   /**
+    * Méthode changeant l'ensemble des valeurs d'un tableau donné
+    * @param arrayMember tableau passé en paramètre
+    * @param booleanValue valeur du booléen d'un élément du tableau
+    * @private
+    */
+   private arrayChangeAllBooleanValues(arrayMember: Array<Provider>, booleanValue: boolean): void {
+      arrayMember.forEach(element => (element.value = booleanValue));
+   }
+
+  /**
+   * Méthode changeant les valeurs des éléments au moment d'un clic
+   * @param localText valeur d'un élement passé dans l'iteration du template
+   * @private
+   */
+  private changeAllValuesWhenClicked(localText: string): void {
+    switch (localText) {
+      case 'Tous':
+        this.arrayChangeAllBooleanValues(this.regions, true);
+        this.arrayChangeAllBooleanValues(this.metiers, true);
+        break;
+      case 'Aucun':
+        this.arrayChangeAllBooleanValues(this.regions, false);
+        this.arrayChangeAllBooleanValues(this.metiers, false);
+        break;
+      default:
+        break;
+    }
+  }
 }
 </script>

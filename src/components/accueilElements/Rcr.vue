@@ -1,48 +1,70 @@
 <template>
-  <v-container>
-    <v-select :items="optionsRcr" :item-text="getOptionsRcr.text" :item-value="getOptionsRcr.id" label="et/ou/sauf" outlined v-model="getOptionsRcrDefaultSelected.text"></v-select>
-    <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir"></v-combobox>
-    <v-select :items="optionsLotRcr" :item-text="getOptionsLotRcr.text" :item-value="getOptionsLotRcr.id" label="Pour ce lot de RCR" outlined v-model="getOptionsLotRcrDefaultSelected.text"></v-select>
-  </v-container>
+   <v-container>
+      <v-select v-on:click="disableDefaultSlotValue0 = false" :items="optionsRcr" outlined v-model="optionsRcrSelected">
+         <template v-if="disableDefaultSlotValue0" slot="selection">
+            <span style="color: grey">Et/ou/sauf</span>
+         </template>
+      </v-select>
+      <p>{{ optionsRcrSelected }}</p>
+      <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir"></v-combobox>
+      <v-select v-on:click="disableDefaultSlotValue1 = false" :items="optionsLotRcr" outlined v-model="optionsLotRcrSelected">
+         <template v-if="disableDefaultSlotValue1" slot="selection">
+            <span style="color: grey">Ou/Et</span>
+         </template>
+      </v-select>
+      <p>{{ optionsLotRcrSelected }}</p>
+   </v-container>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 
 interface Provider {
-  id: number;
-  key: string;
-  text: string;
+   id: number;
+   key: string;
+   text: string;
+   value: Ensemble;
+}
+
+enum Ensemble {
+   Union, //0
+   Intersection, //1
+   Difference, //2
 }
 
 @Component
 export default class VuePpn extends Vue {
-    private optionsRcrDefaultSelected: Array<Provider> = [
-      {id: 1, key:"optionRcrOU", text: "OU" }
-    ];
-    private optionsLotRcrDefaultSelected: Array<Provider> = [
-      {id: 1, key:"optionLotRcrOU", text: "OU" }
-    ];
-    private optionsRcr: Array<Provider> = [
-      {id:0,key:"optionRcrET", text:"ET"},
-      {id:1,key:"optionRcrOU", text:"OU"},
-      {id:2,key:"optionRcrSAUF", text:"SAUF"}
-    ];
-    private optionsLotRcr: Array<Provider> = [
-      {id:0,key:"optionLotRcrET",text:"ET"},
-      {id:1,key:"optionLotRcrOU",text:"OU"},
-    ];
-  public getOptionsRcrDefaultSelected(numberId: number): string {
-    return this.optionsRcrDefaultSelected[numberId].text;
-  }
-  public getOptionsLotRcrDefaultSelected(numberId: number): string {
-    return this.optionsLotRcrDefaultSelected[numberId].text;
-  }
-  public getOptionsRcr(numberId: number): string {
-    return this.optionsRcr[numberId].text;
-  }
-  public getOptionsLotRcr(numberId: number): string {
-    return this.optionsLotRcr[numberId].text;
-  }
+   private disableDefaultSlotValue0 = true;
+   private disableDefaultSlotValue1 = true;
+
+   private optionsRcr: Array<Provider> = [
+      {id: 0, key: 'optionRcrET', text: 'ET', value: Ensemble.Union},
+      {id: 1, key: 'optionRcrOU', text: 'OU', value: Ensemble.Intersection},
+      {id: 2, key: 'optionRcrSAUF', text: 'SAUF', value: Ensemble.Difference},
+   ];
+   private optionsRcrSelected: Ensemble = Ensemble.Intersection;
+
+   private optionsLotRcr: Array<Provider> = [
+      {id: 0, key: 'optionLotRcrET', text: 'ET', value: Ensemble.Union},
+      {id: 1, key: 'optionLotRcrOU', text: 'OU', value: Ensemble.Intersection},
+   ];
+   private optionsLotRcrSelected: Ensemble = Ensemble.Intersection;
+
+   public changeValueOfEnumElement(text: string, enumElement: Ensemble) {
+      switch (text) {
+         case 'ET':
+            enumElement = Ensemble.Union;
+            break;
+         case 'OU':
+            enumElement = Ensemble.Intersection;
+            break;
+         case 'SAUF':
+            enumElement = Ensemble.Difference;
+            break;
+         default:
+            enumElement = Ensemble.Union;
+            break;
+      }
+   }
 }
 </script>
