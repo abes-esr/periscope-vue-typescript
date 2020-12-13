@@ -96,27 +96,27 @@ export default class PlanConservation extends Mixins(GlobalPropertiesMixin) {
     * @private
     */
    private arrayChangeAllBooleanValues(arrayMember: Array<Provider>, booleanValue: boolean): void {
-      arrayMember.forEach(element => (element.value = booleanValue));
+      arrayMember.forEach((element) => (element.value = booleanValue));
    }
 
-  /**
-   * Méthode changeant les valeurs des éléments au moment d'un clic
-   * @param localText valeur d'un élement passé dans l'iteration du template
-   * @private
-   */
-  private changeAllValuesWhenClicked(localText: string): void {
-    switch (localText) {
-      case 'Tous':
-        this.arrayChangeAllBooleanValues(this.regions, true);
-        this.arrayChangeAllBooleanValues(this.metiers, true);
-        break;
-      case 'Aucun':
-        this.arrayChangeAllBooleanValues(this.regions, false);
-        this.arrayChangeAllBooleanValues(this.metiers, false);
-        break;
-      default:
-        break;
-    }
-  }
+   /**
+    * Méthode changeant les valeurs des éléments au moment d'un clic
+    * @param localText valeur d'un élement passé dans l'iteration du template
+    * @private
+    */
+   private changeAllValuesWhenClicked(localText: string): void {
+      switch (localText) {
+         case 'Tous':
+            this.arrayChangeAllBooleanValues(this.regions, true);
+            this.arrayChangeAllBooleanValues(this.metiers, true);
+            break;
+         case 'Aucun':
+            this.arrayChangeAllBooleanValues(this.regions, false);
+            this.arrayChangeAllBooleanValues(this.metiers, false);
+            break;
+         default:
+            break;
+      }
+   }
 }
 </script>

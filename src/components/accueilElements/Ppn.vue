@@ -11,10 +11,8 @@
       </v-row>
       <v-expansion-panels flat class="outlined-app">
          <v-expansion-panel>
-            <v-expansion-panel-header>
-               Rechercher par d'autres critères
-            </v-expansion-panel-header>
-            <v-expansion-panel-conteoraclesqldevelopperabesconfnt>
+            <v-expansion-panel-header> Rechercher par d'autres critères </v-expansion-panel-header>
+            <v-expansion-panel-content>
                <v-text-field clearable multiple outlined small-chips label="Mots du titre" placeholder=" "></v-text-field>
                <span>
                   <v-select :items="optionsEditor" :item-text="getOptionsEditor.text" :item-value="getOptionsEditor.id" label="et/ou/sauf" outlined v-model="getOptionsEditorDefaultSelected.text"></v-select>
@@ -28,7 +26,7 @@
                   <v-select :items="optionsCountry" :item-text="getOptionsCountry.text" :item-value="getOptionsCountry.id" label="et/ou/sauf" outlined v-model="getOptionsCountryDefaultSelected.text"></v-select>
                   <v-text-field outlined label="Pays de publication" placeholder=" "></v-text-field>
                </span>
-            </v-expansion-panel-conteoraclesqldevelopperabesconfnt>
+            </v-expansion-panel-content>
          </v-expansion-panel>
       </v-expansion-panels>
    </v-container>
@@ -49,7 +47,7 @@ export default class VuePpn extends Vue {
 
    private optionsEditorDefaultSelected: Array<Provider> = [{id: 1, key: 'optionEditor', text: 'ET'}];
 
-   private optionsLanguageDefaultSeloraclesqldevelopperabesconfected: Array<Provider> = [{id: 1, key: 'optionLanguage', text: 'ET'}];
+   private optionsLanguageDefaultSelected: Array<Provider> = [{id: 1, key: 'optionLanguage', text: 'ET'}];
 
    private optionsCountryDefaultSelected: Array<Provider> = [{id: 1, key: 'optionCountry', text: 'ET'}];
 
@@ -73,7 +71,7 @@ export default class VuePpn extends Vue {
       {id: 1, key: 'optionCountryOU', text: 'OU'},
       {id: 2, key: 'optionCountrySAUF', text: 'SAUF'},
    ];
-oraclesqldevelopperabesconf
+
    public getOptionsPPnDefaultSelected(numberId: number): string {
       return this.optionsPpnDefaultSelected[numberId].text;
    }

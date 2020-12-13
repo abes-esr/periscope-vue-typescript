@@ -13,9 +13,9 @@
          <v-col xs="6" sm="3" class="margin-v-col-accueil">
             <v-checkbox v-on:click="changeValueOneCheckboxElement(prop_metiers[m + 11])" v-for="m in 5" :key="m" :value="prop_metiers[m + 11].value" :label="prop_metiers[m + 11].text" hide-details class="margin-v-checkbox-accueil"></v-checkbox>
          </v-col>
-        <v-col>
-          <p>{{ prop_metiers }}</p>
-        </v-col>
+         <v-col>
+            <p>{{ prop_metiers }}</p>
+         </v-col>
       </v-row>
    </v-container>
 </template>
@@ -33,11 +33,10 @@ interface Provider {
 
 @Component
 export default class Metiers extends Mixins(GlobalPropertiesMixin) {
-
    @Prop({required: true}) prop_metiers: Array<Provider>;
 
-  private changeValueOneCheckboxElement(element: Provider): void {
-    element.value = !element.value;
-  }
+   private changeValueOneCheckboxElement(element: Provider): void {
+      element.value = !element.value;
+   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-   <v-container class="outlined-app" style="background-color: #F8F9F9">
+   <v-container class="outlined-app" style="background-color: #f8f9f9">
       <v-container class="ma-0 pa-0">
          <v-row :align="getVerticalAlignValue(1)" :justify="getHorizontalJustifyValue(1)" no-gutters>
             <v-col class="outlined-app" style="background-color: #0f75bc">
@@ -7,11 +7,11 @@
             </v-col>
          </v-row>
       </v-container>
-     <v-container>
-       <component-plan-de-conservation></component-plan-de-conservation>
-     </v-container>
       <v-container>
-         <v-row>oraclesqldevelopperabesconf
+         <component-plan-de-conservation></component-plan-de-conservation>
+      </v-container>
+      <v-container>
+         <v-row>
             <v-col>
                <component-rcr class="outlined-app"></component-rcr>
             </v-col>
@@ -41,7 +41,6 @@ import ComponentPlanDeConservation from '@/components/accueilElements/PlanConser
       ComponentPlanDeConservation,
    },
 })
-
 export default class Recherche extends Mixins(GlobalPropertiesMixin) {
    private title = 'Recherche';
 }

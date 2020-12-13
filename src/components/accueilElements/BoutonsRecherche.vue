@@ -4,17 +4,13 @@
          <v-col xs="6" sm="3">
             <v-btn color="#E53935" dark large>
                Réinitialiser
-               <v-icon dark right>
-                  mdi-cancel
-               </v-icon>
+               <v-icon dark right> mdi-cancel </v-icon>
             </v-btn>
          </v-col>
          <v-col xs="6" sm="3">
             <v-btn color="#4CAF50" dark large
                >Recherche
-               <v-icon dark right>
-                  mdi-checkbox-marked-circle
-               </v-icon>
+               <v-icon dark right> mdi-checkbox-marked-circle </v-icon>
             </v-btn>
          </v-col>
       </v-row>

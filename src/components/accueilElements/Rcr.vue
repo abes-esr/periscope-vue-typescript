@@ -6,8 +6,8 @@
          </template>
       </v-select>
       <p>{{ optionsRcrSelected }}</p>
-      <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir" v-model="rcrHandler"></v-combobox>
-      <p>{{ rcrHandler }}</p>
+      <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir" v-model="rcrArrayTyped"></v-combobox>
+      <p>{{ rcrArrayTyped }}</p>
       <v-select v-on:click="disableDefaultSlotValue1 = false" :items="optionsLotRcr" outlined v-model="optionsLotRcrSelected">
          <template v-if="disableDefaultSlotValue1" slot="selection">
             <span style="color: grey">Ou/Et</span>
@@ -50,11 +50,20 @@ export default class VuePpn extends Vue {
    ];
    private optionsRcrSelected: Ensemble = Ensemble.Intersection;
 
+   private rcrArrayTyped = [];
    private rcrHandler: Array<RcrProvider> = [];
 
-   @Watch('rcrHandler')
-   rcrTyped(newVal: Array<RcrProvider>) {
-      newVal.forEach(element => console.log(element))
+   @Watch('rcrArrayTyped')
+   rcrTyped(newVal: []): void {
+      console.log('->' + newVal);
+      console.log(newVal);
+      console.log('last' + newVal[newVal.length - 1]);
+      newVal.forEach((element) => console.log(element));
+      console.log('');
+
+      if (typeof newVal[newVal.length - 1] === 'number') {
+         console.log('nombre' + newVal);
+      }
    }
 
    private optionsLotRcr: Array<Provider> = [
@@ -79,6 +88,5 @@ export default class VuePpn extends Vue {
             break;
       }
    }
-
 }
 </script>
