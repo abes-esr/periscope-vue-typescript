@@ -1,14 +1,14 @@
 <template>
    <v-container>
-      <v-select v-on:click="disableDefaultSlotValue0 = false" :items="optionsRcr" outlined v-model="optionsRcrSelected">
+      <v-select label="Par defaut, ou" v-on:click="disableDefaultSlotValue0 = false" :items="optionsRcr" outlined v-model="optionsRcrSelected">
          <template v-if="disableDefaultSlotValue0" slot="selection">
             <span style="color: grey">Et/ou/sauf</span>
          </template>
       </v-select>
       <p>{{ optionsRcrSelected }}</p>
       <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir" v-model="rcrArrayTyped"></v-combobox>
-      <p>{{ rcrArrayTyped }}</p>
-      <v-select v-on:click="disableDefaultSlotValue1 = false" :items="optionsLotRcr" outlined v-model="optionsLotRcrSelected">
+      <p>{{ rcrHandler }}</p>
+      <v-select label="Pour ce lot de rcr (par defaut, ou)" v-on:click="disableDefaultSlotValue1 = false" :items="optionsLotRcr" outlined v-model="optionsLotRcrSelected">
          <template v-if="disableDefaultSlotValue1" slot="selection">
             <span style="color: grey">Ou/Et</span>
          </template>
@@ -53,16 +53,36 @@ export default class VuePpn extends Vue {
    private rcrArrayTyped = [];
    private rcrHandler: Array<RcrProvider> = [];
 
+   /**
+    * The global array of combobox component watched by this function, after each typed by user, this function
+    * is launched to observe the final current array in combobox
+    * @param newArrayVal
+    */
    @Watch('rcrArrayTyped')
-   rcrTyped(newVal: []): void {
-      console.log('->' + newVal);
-      console.log(newVal);
-      console.log('last' + newVal[newVal.length - 1]);
-      newVal.forEach((element) => console.log(element));
-      console.log('');
+   rcrTyped(newArrayVal: []): void {
+      if (newArrayVal.length === 0) {
+         this.rcrHandler = [];
+         return;
+      }
 
-      if (typeof newVal[newVal.length - 1] === 'number') {
-         console.log('nombre' + newVal);
+      //if the value of last element of array contains characters, it removes from list, return = get out of function
+      if (new RegExp('\\D').test(newArrayVal[newArrayVal.length - 1])) {
+         newArrayVal.pop();
+         return;
+      }
+
+      //if the value of last element of array contains only digits, and array target to fill length is different from current Array watched
+      if (new RegExp('\\d').test(newArrayVal[newArrayVal.length - 1]) && this.rcrHandler.length !== newArrayVal.length) {
+         //conversion of string input (who contains only digits) in number type
+         let newLastValConvertedInNumberType: number = +newArrayVal[newArrayVal.length - 1];
+         //push element in rcrHandler array, with id value associated at rcr
+         console.log(this.rcrHandler.length !== newArrayVal.length);
+         this.rcrHandler.push(
+            new (class implements RcrProvider {
+               id: number = newArrayVal.length - 1;
+               value: number = newLastValConvertedInNumberType;
+            })()
+         );
       }
    }
 
