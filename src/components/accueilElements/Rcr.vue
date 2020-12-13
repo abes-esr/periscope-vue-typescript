@@ -6,7 +6,8 @@
          </template>
       </v-select>
       <p>{{ optionsRcrSelected }}</p>
-      <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir"></v-combobox>
+      <v-combobox clearable multiple outlined small-chips label="Saisir le rcr d'une bibliothèque" placeholder="rcr à saisir" v-model="rcrHandler"></v-combobox>
+      <p>{{ rcrHandler }}</p>
       <v-select v-on:click="disableDefaultSlotValue1 = false" :items="optionsLotRcr" outlined v-model="optionsLotRcrSelected">
          <template v-if="disableDefaultSlotValue1" slot="selection">
             <span style="color: grey">Ou/Et</span>
@@ -17,13 +18,18 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import {Component, Vue, Watch} from 'vue-property-decorator';
 
 interface Provider {
    id: number;
    key: string;
    text: string;
    value: Ensemble;
+}
+
+interface RcrProvider {
+   id: number;
+   value: number;
 }
 
 enum Ensemble {
@@ -44,13 +50,20 @@ export default class VuePpn extends Vue {
    ];
    private optionsRcrSelected: Ensemble = Ensemble.Intersection;
 
+   private rcrHandler: Array<RcrProvider> = [];
+
+   @Watch('rcrHandler')
+   rcrTyped(newVal: Array<RcrProvider>) {
+      newVal.forEach(element => console.log(element))
+   }
+
    private optionsLotRcr: Array<Provider> = [
       {id: 0, key: 'optionLotRcrET', text: 'ET', value: Ensemble.Union},
       {id: 1, key: 'optionLotRcrOU', text: 'OU', value: Ensemble.Intersection},
    ];
    private optionsLotRcrSelected: Ensemble = Ensemble.Intersection;
 
-   public changeValueOfEnumElement(text: string, enumElement: Ensemble) {
+   public changeValueOfEnumElement(text: string, enumElement: Ensemble): void {
       switch (text) {
          case 'ET':
             enumElement = Ensemble.Union;
@@ -66,5 +79,6 @@ export default class VuePpn extends Vue {
             break;
       }
    }
+
 }
 </script>

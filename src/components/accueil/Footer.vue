@@ -24,6 +24,5 @@ import {Component, Mixins} from 'vue-property-decorator';
 import GlobalPropertiesMixin from '@/mixins/globalProperties';
 
 @Component
-
 export default class Footer extends Mixins(GlobalPropertiesMixin) {}
 </script>

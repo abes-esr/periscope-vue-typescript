@@ -11,7 +11,7 @@
        <component-plan-de-conservation></component-plan-de-conservation>
      </v-container>
       <v-container>
-         <v-row>
+         <v-row>oraclesqldevelopperabesconf
             <v-col>
                <component-rcr class="outlined-app"></component-rcr>
             </v-col>
