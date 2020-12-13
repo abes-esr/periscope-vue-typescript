@@ -14,18 +14,30 @@
             <v-expansion-panel-header> Rechercher par d'autres critères </v-expansion-panel-header>
             <v-expansion-panel-content>
                <v-text-field clearable multiple outlined small-chips label="Mots du titre" placeholder=" "></v-text-field>
-               <span>
-                  <v-select :items="optionsEditor" :item-text="getOptionsEditor.text" :item-value="getOptionsEditor.id" label="et/ou/sauf" outlined v-model="getOptionsEditorDefaultSelected.text"></v-select>
-                  <v-text-field outlined label="Editeur" placeholder=" "></v-text-field>
-               </span>
-               <span>
-                  <v-select :items="optionsLanguage" :item-text="getOptionsLanguage.text" :item-value="getOptionsLanguage.id" label="et/ou/sauf" outlined v-model="getOptionsLanguageDefaultSelected.text"></v-select>
-                  <v-text-field outlined label="Langue du document" placeholder=" "></v-text-field>
-               </span>
-               <span>
-                  <v-select :items="optionsCountry" :item-text="getOptionsCountry.text" :item-value="getOptionsCountry.id" label="et/ou/sauf" outlined v-model="getOptionsCountryDefaultSelected.text"></v-select>
-                  <v-text-field outlined label="Pays de publication" placeholder=" "></v-text-field>
-               </span>
+               <v-row dense>
+                  <v-col xs="12" sm="4">
+                     <v-select :items="optionsEditor" :item-text="getOptionsEditor.text" :item-value="getOptionsEditor.id" label="et/ou/sauf" outlined v-model="getOptionsEditorDefaultSelected.text"></v-select>
+                  </v-col>
+                  <v-col xs="12" sm="8">
+                     <v-text-field outlined label="Editeur" placeholder=" "></v-text-field>
+                  </v-col>
+               </v-row>
+               <v-row dense>
+                  <v-col xs="12" sm="4">
+                     <v-select :items="optionsLanguage" :item-text="getOptionsLanguage.text" :item-value="getOptionsLanguage.id" label="et/ou/sauf" outlined v-model="getOptionsLanguageDefaultSelected.text"></v-select>
+                  </v-col>
+                  <v-col xs="12" sm="8">
+                     <v-text-field outlined label="Langue du document" placeholder=" "></v-text-field>
+                  </v-col>
+               </v-row>
+               <v-row dense>
+                  <v-col xs="12" sm="4">
+                     <v-select :items="optionsCountry" :item-text="getOptionsCountry.text" :item-value="getOptionsCountry.id" label="et/ou/sauf" outlined v-model="getOptionsCountryDefaultSelected.text"></v-select>
+                  </v-col>
+                  <v-col xs="12" sm="8">
+                     <v-text-field outlined label="Pays de publication" placeholder=" "></v-text-field>
+                  </v-col>
+               </v-row>
             </v-expansion-panel-content>
          </v-expansion-panel>
       </v-expansion-panels>
